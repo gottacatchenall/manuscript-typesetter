@@ -12,10 +12,10 @@ import JSON
 metadata = JSON.parsefile(joinpath(pwd(), "manuscript-metadata.json"))
 _common_options = `-F pandoc-crossref --citeproc --bibliography=references.json --csl .typesetter/citationstyle.csl --metadata-file=manuscript-metadata.json`
 run(
-    `pandoc README.md -s -o dist/$(metadata["filename"])_preprint.pdf --pdf-engine tectonic $(_common_options) --template=.typesetter/templates/preprint.tex`,
+    `pandoc README.md -s -o dist/$(metadata["filename"])_preprint.pdf --pdf-engine ./tectonic $(_common_options) --template=.typesetter/templates/preprint.tex`,
 )
 run(
-    `pandoc README.md -s -o dist/$(metadata["filename"])_draft.pdf $(_common_options) --pdf-engine tectonic --template=.typesetter/templates/draft.tex`,
+    `pandoc README.md -s -o dist/$(metadata["filename"])_draft.pdf $(_common_options) --pdf-engine ./tectonic --template=.typesetter/templates/draft.tex`,
 )
 run(
     `pandoc README.md -s -o dist/$(metadata["filename"]).odt $(_common_options) --template=.typesetter/templates/default.opendocument`,
@@ -33,7 +33,7 @@ for sm in possible_suppmat
     sm = replace(sm, "appendix/" => "")
     sm = replace(sm, ".md" => "")
     run(
-        `pandoc appendix/$(sm).md -s -o dist/appendix/$(metadata["filename"])_$(sm).pdf --pdf-engine tectonic $(_common_options) --template=.typesetter/templates/appendix.tex`,
+        `pandoc appendix/$(sm).md -s -o dist/appendix/$(metadata["filename"])_$(sm).pdf --pdf-engine ./tectonic $(_common_options) --template=.typesetter/templates/appendix.tex`,
     )
 end
 
