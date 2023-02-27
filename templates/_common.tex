@@ -6,15 +6,33 @@
 \usepackage{fontspec}
 \usepackage{unicode-math}
 \setmainfont{texgyretermes}[
-  Extension = .otf,
-  UprightFont = *-regular,
-  BoldFont = *-bold,
-  ItalicFont = *-italic,
-  BoldItalicFont = *-bolditalic,
+	Extension = .otf,
+	UprightFont = *-regular,
+	BoldFont = *-bold,
+	ItalicFont = *-italic,
+	BoldItalicFont = *-bolditalic,
 ]
-\setmathfont{TeX Gyre Termes Math}[Scale=MatchLowercase]
-\setsansfont{TeX Gyre Heros}[Scale=MatchLowercase]
-\setmonofont{TeX Gyre Cursor}[Ligatures=NoCommon,Scale=MatchLowercase]
+\setmathfont{texgyretermes-math}[
+	Extension = .otf,
+	Scale=MatchLowercase
+]
+\setsansfont{texgyreheros}[
+	Scale=MatchLowercase,
+	Extension = .otf,
+	UprightFont = *-regular,
+	BoldFont = *-bold,
+	ItalicFont = *-italic,
+	BoldItalicFont = *-bolditalic,
+]
+\setmonofont{texgyrecursor}[
+	Ligatures=NoCommon,
+	Scale=MatchLowercase,
+	Extension = .otf,
+	UprightFont = *-regular,
+	BoldFont = *-bold,
+	ItalicFont = *-italic,
+	BoldItalicFont = *-bolditalic,
+]
 
 \usepackage{lastpage}
 
