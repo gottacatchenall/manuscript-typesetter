@@ -2,3 +2,5 @@ Manifest.toml
 citationstyle.csl
 pandoc-*
 tectoni*
+texgyre*
+*.zip
