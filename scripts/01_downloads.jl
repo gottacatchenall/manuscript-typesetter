@@ -15,3 +15,10 @@ run(`tar -xvzf pandoc.tar.gz`)
 run(`chmod +x pandoc-2.19.2/bin/pandoc`)
 rm("pandoc.tar.gz")
 end
+
+module GetTectonic
+import Downloads
+tecfile = Downloads.download("https://drop-sh.fullyjustified.net", "tectonic.sh")
+run(`chmod +x tectonic.sh`)
+run(`./tectonic.sh`)
+end
