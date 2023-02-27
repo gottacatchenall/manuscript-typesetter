@@ -46,11 +46,4 @@ for sm in possible_suppmat
     )
 end
 
-
-
-if ~isempty(possible_suppmat)
-    sm_paths = ["dist/appendix/$(metadata["filename"])_$(sm).pdf" for sm in sm_name_from_path.(possible_suppmat)]
-    run(`pdfunite $(sm_paths) dist/$(metadata["filename"])_appendix.pdf`)
-end
-
 end

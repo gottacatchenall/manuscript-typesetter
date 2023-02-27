@@ -25,13 +25,25 @@ end
 
 module GetFonts
 import Downloads
-Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/heros/qhv2.004otf.zip", "heros.zip")
-Downloads.download("https://www.gust.org.pl/projects/e-foundry/tg-math/download/texgyretermes-math-1543.zip", "termesmath.zip")
-Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/termes/qtm2.004otf.zip", "termes.zip")
-Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor/qcr2.004otf.zip", "cursor.zip")
+Downloads.download(
+    "https://www.gust.org.pl/projects/e-foundry/tex-gyre/heros/qhv2.004otf.zip",
+    "heros.zip",
+)
+Downloads.download(
+    "https://www.gust.org.pl/projects/e-foundry/tg-math/download/texgyretermes-math-1543.zip",
+    "termesmath.zip",
+)
+Downloads.download(
+    "https://www.gust.org.pl/projects/e-foundry/tex-gyre/termes/qtm2.004otf.zip",
+    "termes.zip",
+)
+Downloads.download(
+    "https://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor/qcr2.004otf.zip",
+    "cursor.zip",
+)
 
-_fonts_dir = joinpath(homedir(), ".local", "share", "fonts")
-ispath(_fonts_dir) || mkpath(_fonts_dir)
+_fonts_dir = joinpath(homedir(), ".local", "share", "fonts", "TeXGyre")
+run(`mkdir -p $(_fonts_dir)`)
 
 run(`unzip heros.zip`)
 run(`unzip termes.zip`)
@@ -41,7 +53,8 @@ mv("texgyretermes-math-1543/opentype/texgyretermes-math.otf", "texgyretermes-mat
 
 _fonts = filter!(f -> endswith(f, ".otf"), filter!(isfile, readdir()))
 for _font in _fonts
-    mv(_font, _fonts_dir; force=true)
+    fname = last(splitpath(_font))
+    mv(_font, joinpath(_fonts_dir, fname); force = true)
 end
 
 run(`fc-cache -vf`)
@@ -50,4 +63,28 @@ run(`rm termes.zip`)
 run(`rm termesmath.zip`)
 run(`rm cursor.zip`)
 run(`rm -r texgyretermes-math-1543`)
+end
+
+module GetJuliaMono
+import Downloads
+Downloads.download(
+    "https://github.com/cormullion/juliamono/releases/download/v0.048/JuliaMono.zip",
+    "JuliaMono.zip",
+)
+
+run(`unzip JuliaMono.zip`)
+run(`rm -r webfonts`)
+
+_fonts_dir = joinpath(homedir(), ".local", "share", "fonts", "JuliaMono")
+run(`mkdir -p $(_fonts_dir)`)
+
+_fonts = filter!(f -> endswith(f, ".ttf"), filter!(isfile, readdir()))
+for _font in _fonts
+    fname = last(splitpath(_font))
+    mv(_font, joinpath(_fonts_dir, fname); force = true)
+end
+
+run(`fc-cache -vf`)
+run(`rm JuliaMono.zip`)
+
 end
