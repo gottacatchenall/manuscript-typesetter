@@ -7,7 +7,7 @@ _pandoc = `./pandoc-2.19.2/bin/pandoc`
 
 @info "Build the preprint"
 run(
-    `$(_pandoc) README.md -s -o dist/$(metadata["filename"])_preprint.pdf --pdf-engine tectonic $(_common_options) --template=.typesetter/templates/preprint.tex`,
+    `$(_pandoc) README.md -s -o dist/$(metadata["filename"])_preprint.pdf --pdf-engine ./tectonic $(_common_options) --template=.typesetter/templates/preprint.tex`,
 )
 
 @info "Build the draft"
