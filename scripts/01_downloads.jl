@@ -31,7 +31,7 @@ Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/termes/q
 Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor/qcr2.004otf.zip", "cursor.zip")
 run(`unzip \*.zip`)
 run(`mkdir -p \~/.local/share/fonts`)
-run(`mv texgyre\* ~/.local/share/fonts`)
+run(`mv texgyre\* \~/.local/share/fonts`)
 run(`fc-cache -vf`)
 run(`rm \*.zip`)
 end
