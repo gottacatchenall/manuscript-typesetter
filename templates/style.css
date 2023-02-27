@@ -15,6 +15,10 @@
     --inner-space: 1.2em;
 }
 
+html {
+    background-color: white;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     margin: 0 0;

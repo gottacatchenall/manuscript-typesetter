@@ -12,6 +12,30 @@ metadata["institutions"] = affiliations["institutions"]
 
 metadata["filename"] = JSON.parsefile(joinpath(pwd(), "filename.json"))["filename"]
 
+# Get the supp. mat.
+function sm_name_from_path(p)
+    sm = replace(p, "appendix/" => "")
+    sm = replace(sm, ".md" => "")
+    return sm
+end
+
+possible_suppmat = readdir("appendix"; join = true)
+filter!(f -> endswith(f, ".md"), possible_suppmat)
+
+if ~isempty(possible_suppmat)
+    SM = []
+    for suppmat in possible_suppmat
+        sm_text = readlines(suppmat)
+        title_line = findfirst(l -> startswith(l, "name: "), sm_text)
+        title = replace(sm_text[title_line], "name: " => "")
+        order_line = findfirst(l -> startswith(l, "order: "), sm_text)
+        order = parse(Int, replace(sm_text[order_line], "order: " => ""))
+        push!(SM, Dict("order" => order, "title" => title, "url" => "appendix/$(metadata["filename"])_$(sm_name_from_path(suppmat)).pdf"))
+    end
+    metadata["appendix"] = SM
+end
+
+
 # Write the file
 open("manuscript-metadata.json", "w") do json_file
     return JSON.print(json_file, metadata, 4)
