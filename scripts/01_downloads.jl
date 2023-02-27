@@ -42,8 +42,8 @@ Downloads.download(
     "cursor.zip",
 )
 
-_fonts_dir = joinpath(homedir(), ".local", "share", "fonts", "TeXGyre")
-run(`mkdir -p $(_fonts_dir)`)
+_fonts_dir = ".fonts"
+isdir(_fonts_dir) || mkdir(_fonts_dir)
 
 run(`unzip heros.zip`)
 run(`unzip termes.zip`)
@@ -57,7 +57,6 @@ for _font in _fonts
     mv(_font, joinpath(_fonts_dir, fname); force = true)
 end
 
-run(`fc-cache -vf`)
 run(`rm heros.zip`)
 run(`rm termes.zip`)
 run(`rm termesmath.zip`)
@@ -75,8 +74,8 @@ Downloads.download(
 run(`unzip JuliaMono.zip`)
 run(`rm -r webfonts`)
 
-_fonts_dir = joinpath(homedir(), ".local", "share", "fonts", "JuliaMono")
-run(`mkdir -p $(_fonts_dir)`)
+_fonts_dir = ".fonts"
+isdir(_fonts_dir) || mkdir(_fonts_dir)
 
 _fonts = filter!(f -> endswith(f, ".ttf"), filter!(isfile, readdir()))
 for _font in _fonts
@@ -84,7 +83,6 @@ for _font in _fonts
     mv(_font, joinpath(_fonts_dir, fname); force = true)
 end
 
-run(`fc-cache -vf`)
 run(`rm JuliaMono.zip`)
 
 end

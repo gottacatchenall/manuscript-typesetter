@@ -6,17 +6,20 @@
 \usepackage{fontspec}
 \usepackage{unicode-math}
 \setmainfont{texgyretermes}[
-	Extension = .otf,
-	UprightFont = *-regular,
+    Path=.fonts/,
+    Extension=.otf,
+    UprightFont = *-regular,    
 	BoldFont = *-bold,
 	ItalicFont = *-italic,
 	BoldItalicFont = *-bolditalic,
 ]
 \setmathfont{texgyretermes-math}[
+    Path=.fonts/,
 	Extension = .otf,
 	Scale=MatchLowercase,
 ]
 \setsansfont{texgyreheros}[
+    Path=.fonts/,
 	Scale=MatchLowercase,
 	Extension = .otf,
 	UprightFont = *-regular,    
@@ -25,13 +28,14 @@
 	BoldItalicFont = *-bolditalic,
 ]
 \setmonofont{JuliaMono}[
+    Path=.fonts/,
+	Extension = .ttf,
 	Ligatures=NoCommon,
 	Scale=MatchLowercase,
-	Extension = .ttf,
-	UprightFont = *_Regular,
-	BoldFont = *_SemiBold,
-	ItalicFont = *_RegularItalic,
-	BoldItalicFont = *_SemiBoldItalic,
+	UprightFont = *-Regular,
+	BoldFont = *-SemiBold,
+	ItalicFont = *-RegularItalic,
+	BoldItalicFont = *-SemiBoldItalic,
 	Contextuals = Alternate,
 	CharacterVariant = 1,
 ]
