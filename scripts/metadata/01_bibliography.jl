@@ -1,4 +1,4 @@
-run(`pandoc references.bib -t csljson -o references.json`)
+run(`./pandoc references.bib -t csljson -o references.json`)
 
 references = JSON.parsefile(joinpath(pwd(), "references.json"))
 
