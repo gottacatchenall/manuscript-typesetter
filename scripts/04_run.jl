@@ -30,15 +30,27 @@ run(
     `$(_pandoc) README.md -o dist/rawtext.txt $(_common_options) -M suppress-bibliography=true`,
 )
 
+function sm_name_from_path(p)
+    sm = replace(p, "appendix/" => "")
+    sm = replace(sm, ".md" => "")
+    return sm
+end
+
 possible_suppmat = readdir("appendix"; join = true)
 filter!(f -> endswith(f, ".md"), possible_suppmat)
 for sm in possible_suppmat
-    sm = replace(sm, "appendix/" => "")
-    sm = replace(sm, ".md" => "")
+    sm = sm_name_from_path(sm)    
     @info "Build the supp. mat. $(sm)"
     run(
         `$(_pandoc) appendix/$(sm).md -s -o dist/appendix/$(metadata["filename"])_$(sm).pdf --pdf-engine ./tectonic $(_common_options) --template=.typesetter/templates/appendix.tex`,
     )
+end
+
+
+
+if ~isempty(possible_suppmat)
+    sm_paths = ["dist/appendix/$(metadata["filename"])_$(sm).pdf" for sm in sm_name_from_path.(possible_suppmat)]
+    run(`pdfunite $(sm_paths) dist/$(metadata["filename"])_appendix.pdf`)
 end
 
 end
