@@ -29,9 +29,9 @@ Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/heros/qh
 Downloads.download("https://www.gust.org.pl/projects/e-foundry/tg-math/download/texgyretermes-math-1543.zip", "termesmath.zip")
 Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/termes/qtm2.004otf.zip", "termes.zip")
 Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor/qcr2.004otf.zip", "cursor.zip")
-run(`unzip *.zip`)
-run(`mkdir -p ~/.local/share/fonts`)
-run(`mv texgyre* ~/.local/share/fonts`)
+run(`unzip \*.zip`)
+run(`mkdir -p \~/.local/share/fonts`)
+run(`mv texgyre\* ~/.local/share/fonts`)
 run(`fc-cache -vf`)
-run(`rm *.zip`)
+run(`rm \*.zip`)
 end
