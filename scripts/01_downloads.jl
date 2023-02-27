@@ -29,9 +29,25 @@ Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/heros/qh
 Downloads.download("https://www.gust.org.pl/projects/e-foundry/tg-math/download/texgyretermes-math-1543.zip", "termesmath.zip")
 Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/termes/qtm2.004otf.zip", "termes.zip")
 Downloads.download("https://www.gust.org.pl/projects/e-foundry/tex-gyre/cursor/qcr2.004otf.zip", "cursor.zip")
-run(`unzip \*.zip`)
-run(`mkdir -p \~/.local/share/fonts`)
-run(`mv texgyre\* \~/.local/share/fonts`)
+
+_fonts_dir = joinpath(homedir(), ".local", "share", "fonts")
+ispath(_fonts_dir) || mkpath(_fonts_dir)
+
+run(`unzip heros.zip`)
+run(`unzip termes.zip`)
+run(`unzip cursor.zip`)
+run(`unzip termesmath.zip`)
+mv("texgyretermes-math-1543/opentype/texgyretermes-math.otf", "texgyretermes-math.otf")
+
+_fonts = filter!(f -> endswith(f, ".otf"), filter!(isfile, readdir()))
+for _font in _fonts
+    mv(_font, _fonts_dir; force=true)
+end
+
 run(`fc-cache -vf`)
-run(`rm \*.zip`)
+run(`rm heros.zip`)
+run(`rm termes.zip`)
+run(`rm termesmath.zip`)
+run(`rm cursor.zip`)
+run(`rm -r texgyretermes-math-1543`)
 end
