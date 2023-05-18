@@ -1,5 +1,5 @@
 # Read the metadata
-metadata = JSON.parsefile(joinpath(pwd(), "metadata.json"))
+metadata = JSON.parsefile(joinpath(pwd(), "../metadata.json"))
 
 authors = metadata["authors"]
 affiliation_to_number = Dict{String, String}()

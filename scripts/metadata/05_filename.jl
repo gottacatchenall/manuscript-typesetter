@@ -1,4 +1,4 @@
-metadata = JSON.parsefile(joinpath(pwd(), "metadata.json"))
+metadata = JSON.parsefile(joinpath(pwd(), "../metadata.json"))
 
 title = filter(!Unicode.ispunct, lowercase(metadata["title"]))
 title_tokens = setdiff(split(title, " "), Languages.stopwords(Languages.English()))

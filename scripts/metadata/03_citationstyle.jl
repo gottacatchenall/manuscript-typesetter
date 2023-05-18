@@ -1,6 +1,6 @@
-metadata = JSON.parsefile(joinpath(pwd(), "metadata.json"))
+metadata = JSON.parsefile(joinpath(pwd(), "../metadata.json"))
 
-local_file = joinpath(pwd(), ".typesetter", "citationstyle.csl")
+local_file = joinpath(pwd(),  "citationstyle.csl")
 
 try
     remote_url = "https://raw.githubusercontent.com/citation-style-language/styles/master/$(metadata["citationstyle"]).csl"

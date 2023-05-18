@@ -1,5 +1,5 @@
 # Read the metadata
-metadata = JSON.parsefile(joinpath(pwd(), "metadata.json"))
+metadata = JSON.parsefile(joinpath(pwd(), "../metadata.json"))
 
 # Dispatch on abstract type
 function format_abstract(abstract::Dict{String, Any})

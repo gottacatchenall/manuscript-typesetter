@@ -1,5 +1,5 @@
 _pandoc = `./pandoc-2.19.2/bin/pandoc`
-run(`$(_pandoc) references.bib -t csljson -o references.json`)
+run(`$(_pandoc) ../references.bib -t csljson -o references.json`)
 
 references = JSON.parsefile(joinpath(pwd(), "references.json"))
 

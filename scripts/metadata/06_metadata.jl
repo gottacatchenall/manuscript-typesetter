@@ -1,4 +1,4 @@
-metadata = JSON.parsefile(joinpath(pwd(), "metadata.json"))
+metadata = JSON.parsefile(joinpath(pwd(), "../metadata.json"))
 
 delete!(metadata, "abstract")
 abstract = JSON.parsefile(joinpath(pwd(), "abstract.json"))
@@ -19,7 +19,7 @@ function sm_name_from_path(p)
     return sm
 end
 
-possible_suppmat = readdir("appendix"; join = true)
+possible_suppmat = readdir("../appendix"; join = true)
 filter!(f -> endswith(f, ".md"), possible_suppmat)
 
 if ~isempty(possible_suppmat)
